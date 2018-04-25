@@ -40,10 +40,25 @@ proc searchMessages(word: string, messageTemplate: string, minutes: int, exclude
     ))
 
 
+proc replacePlaceholders(value: string): string =
+  value.replace("${username}", "$1")
+    .replace("${text}", "$2")
+    .replace("${channel}", "$3")
+    .replace("${permalink}", "$4")
+    .replace("${datetime}", "$5")
+    .replace("${word}", "$6")
+
+
 proc exec(args: Args, config: Config) = 
   for word in args.words:
     log fmt"Search {word} within {args.minutes} minutes..."
-    let messages: seq[string] = searchMessages(word, config.messageTemplateLines.join("\n"), args.minutes, config.exclude)
+    let messages: seq[string] = searchMessages(
+      word,
+      config.messageTemplateLines.join("\n").replacePlaceholders,
+      args.minutes,
+      config.exclude
+    )
+
     if messages.len > 0:
       log fmt"Found {messages.len} messages!"
       for m in messages:
