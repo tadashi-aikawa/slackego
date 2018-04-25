@@ -1,14 +1,14 @@
 const doc = """
 Usage:
   slackego <word>... --minutes=<minutes>
-                     [--notify=<notify>]
+                     [--notify=<channel>]
                      [--config=<config>]
                      [--forever]
 
 Options:
   <word>...               Search words
   --minutes=<minutes>     Since minutes before
-  --notify=<notify>       Channel or direct message to notify (without #)
+  --notify=<channel>      Channel or direct message to notify (without #)
   --config=<config>       Config file [default: config.json]
   --forever               Run forever
 """
