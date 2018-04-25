@@ -1,9 +1,10 @@
 const doc = """
 Usage:
-  slackego <word>... --minutes=<minutes>
-                     [--notify=<channel>]
-                     [--config=<config>]
-                     [--forever]
+  slackego run <word>... --minutes=<minutes>
+                         [--notify=<channel>]
+                         [--config=<config>]
+                         [--forever]
+  slackego init
 
 Options:
   <word>...               Search words
@@ -17,19 +18,31 @@ import docopt
 import strutils
 
 
-type Args* = object
-  words*: seq[string]
-  minutes*: int
-  notify*: Option[string]
-  config*: string
-  forever*: bool
+type
+  Command* = enum
+    Run, Init
+  Args* = object
+    case kind*: Command
+    of Run:
+      words*: seq[string]
+      minutes*: int
+      notify*: Option[string]
+      config*: string
+      forever*: bool
+    of Init:
+      discard
+
 
 proc parse*(): Args = 
   let args = docopt(doc, version = "0.1.0")
-  result = Args(
-    words: @(args["<word>"]),
-    minutes: ($args["--minutes"]).parseInt,
-    notify: if args["--notify"].to_bool: some($args["--notify"]) else: none(string),
-    config: $args["--config"],
-    forever: args["--forever"],
-  )
+  if args["init"]:
+    result = Args(kind: Command.Init)
+  if args["run"]:
+    result = Args(
+      kind: Command.Run,
+      words: @(args["<word>"]),
+      minutes: ($args["--minutes"]).parseInt,
+      notify: if args["--notify"].to_bool: some($args["--notify"]) else: none(string),
+      config: $args["--config"],
+      forever: args["--forever"],
+    )

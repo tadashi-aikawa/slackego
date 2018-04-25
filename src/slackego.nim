@@ -9,6 +9,7 @@ import algorithm
 import slackegopkg.clients.slack
 import slackegopkg.config
 import slackegopkg.args
+import slackegopkg.init
 
 
 const dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -70,15 +71,19 @@ proc exec(args: Args, config: Config) =
 
 
 proc main = 
-  let
-    args: Args = args.parse()
-    config: Config = config.load(args.config)
+  let args: Args = args.parse()
 
-  while true:
-    exec(args, config)
-    if args.forever:
-      sleep args.minutes * 1000 * 60
-    else:
-      break;
+  if args.kind == Command.Init:
+    init()
+    return
+  if args.kind == Command.Run:
+    let config: Config = config.load(args.config)
+    while true:
+      exec(args, config)
+      if args.forever:
+        sleep args.minutes * 1000 * 60
+      else:
+        break;
+
 
 main()

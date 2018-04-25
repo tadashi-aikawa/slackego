@@ -1,3 +1,4 @@
 nimcache/
 .env
 /slackego
+/config.json
