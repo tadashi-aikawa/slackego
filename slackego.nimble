@@ -1,5 +1,5 @@
 # Package
-version       = "0.1.0"
+version       = "0.1.1"
 author        = "tadashi-aikawa"
 description   = "Ego search script for Slack."
 license       = "MIT"
