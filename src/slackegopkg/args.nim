@@ -18,6 +18,9 @@ import docopt
 import strutils
 
 
+const VERSION = "0.1.1"
+
+
 type
   Command* = enum
     Run, Init
@@ -34,7 +37,7 @@ type
 
 
 proc parse*(): Args = 
-  let args = docopt(doc, version = "0.1.0")
+  let args = docopt(doc, version = VERSION)
   if args["init"]:
     result = Args(kind: Command.Init)
   if args["run"]:

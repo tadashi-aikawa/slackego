@@ -88,4 +88,5 @@ TODO
 
 1. Update version in `slackego.nimble`
 2. Update version(2) in `README`
-3. `make release`
+3. Update version in `src/slackegopkg/args.nim`
+4. `make release`
