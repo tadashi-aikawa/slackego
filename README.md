@@ -16,7 +16,15 @@ Quick start
 
 ### Install
 
-TODO
+Specify install version to `<version>` (ex: 0.1.0).
+
+```
+$ wget https://github.com/tadashi-aikawa/slackego/releases/download/<version>/slackego
+$ chmod +x slackego
+
+# Optional
+$ mv slackego /usr/local/bin/
+```
 
 
 ### Create config
