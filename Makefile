@@ -16,6 +16,9 @@ version := $(shell git rev-parse --abbrev-ref HEAD)
 
 #------
 
+dev: ## $ARGS
+	@nimble build && ./slackego run $(ARGS)
+
 clean-package:
 	@rm -rf slackego src/nimcache
 
