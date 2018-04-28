@@ -23,7 +23,7 @@ package: clean-package
 	@nim c -d:ssl -d:release -d:quick --opt:size src/slackego.nim
 	@mv src/slackego .
 
-release: packeage
+release: package
 	@echo '1. Staging and commit'
 	git add slackego.nimble
 	git commit -m ':package: Version $(version)'
