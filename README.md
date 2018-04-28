@@ -16,19 +16,17 @@ Quick start
 
 ### Install
 
-Specify install version to `<version>` (ex: v0.1.1).
-
 #### Your current directory
 
 ```
-$ wget https://github.com/tadashi-aikawa/slackego/releases/download/<version>/slackego \
+$ wget https://github.com/tadashi-aikawa/slackego/releases/download/v0.1.1/slackego \
     && chmod +x slackego
 ```
 
 #### Your machine
 
 ```
-$ sudo wget https://github.com/tadashi-aikawa/slackego/releases/download/<version>/slackego -O /usr/local/bin/slackego \
+$ sudo wget https://github.com/tadashi-aikawa/slackego/releases/download/v0.1.1/slackego -O /usr/local/bin/slackego \
     && sudo chmod +x /usr/local/bin/slackego
 ```
 
@@ -89,4 +87,5 @@ TODO
 ### Release
 
 1. Update version in `slackego.nimble`
-2. `make release`
+2. Update version(2) in `README`
+3. `make release`
