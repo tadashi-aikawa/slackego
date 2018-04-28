@@ -63,3 +63,16 @@ $ slackego run tadashi-aikawa --minutes 60
 $ slackego run tadashi-aikawa --minutes 60 --notify times_tadashi-aikawa
 ```
 
+
+For developers
+--------------
+
+### Development
+
+TODO
+
+
+### Release
+
+1. Update version in `slackego.nimble`
+2. `make release`
