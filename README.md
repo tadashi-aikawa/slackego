@@ -18,12 +18,18 @@ Quick start
 
 Specify install version to `<version>` (ex: v0.1.0).
 
-```
-$ wget https://github.com/tadashi-aikawa/slackego/releases/download/<version>/slackego
-$ chmod +x slackego
+#### Your current directory
 
-# Optional
-$ mv slackego /usr/local/bin/
+```
+$ wget https://github.com/tadashi-aikawa/slackego/releases/download/<version>/slackego \
+    && chmod +x slackego
+```
+
+#### Your machine
+
+```
+$ sudo wget https://github.com/tadashi-aikawa/slackego/releases/download/<version>/slackego -O /usr/local/bin/slackego \
+    && sudo chmod +x /usr/local/bin/slackego
 ```
 
 
