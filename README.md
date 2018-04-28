@@ -16,7 +16,7 @@ Quick start
 
 ### Install
 
-Specify install version to `<version>` (ex: v0.1.0).
+Specify install version to `<version>` (ex: v0.1.1).
 
 #### Your current directory
 
