@@ -17,18 +17,9 @@ proc param(question: string): string =
       return r
 
 
-proc replacePlaceholders(value: string): string =
-  value.replace("$username", "$1")
-    .replace("$text", "$2")
-    .replace("$channel", "$3")
-    .replace("$permalink", "$4")
-    .replace("$datetime", "$5")
-    .replace("$word", "$6")
-
-
 proc init*() = 
   let userName: string = param "Your name: Your slack username? (ex: tadashi-aikawa)"
-  let channel: string = param("Excluded channel: Channels you want to excludes?", "general")
+  let channel: string = param("Excluded channel: Channels you want to excludes? (without #)", "times_yourname")
   let posterName: string = param("Slack user name: Slack username who post messages?", "Slackego")
   let posterEmoji: string = param("Slack user emoji: Slack user emoji who post message?", ":slackego:")
 
@@ -40,7 +31,7 @@ proc init*() =
     "| :mag: ${word}",
     "--------------------------------------",
     "${text}"
-  ].map(replacePlaceholders)
+  ]
 
   let j = %*
     {
