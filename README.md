@@ -57,9 +57,9 @@ They are examples.
 
 ```
 # Search for tadashi-aikawa.
-$ slackego tadashi-aikawa --minutes 60
+$ slackego run tadashi-aikawa --minutes 60
 
 # If you want to notify results to #times_tadashi-aikawa (slack channel)
-$ slackego tadashi-aikawa --minutes 60 --notify times_tadashi-aikawa
+$ slackego run tadashi-aikawa --minutes 60 --notify times_tadashi-aikawa
 ```
 
