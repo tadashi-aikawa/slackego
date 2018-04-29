@@ -17,7 +17,7 @@ Quick start
 ### Install
 
 ```
-$ wget https://raw.githubusercontent.com/tadashi-aikawa/slackego/master/install.sh | sudo sh
+$ curl https://raw.githubusercontent.com/tadashi-aikawa/slackego/master/install.sh | sudo sh
 ```
 
 
