@@ -5,6 +5,7 @@ import uri
 import times
 import httpclient
 import json
+import strutils
 import strformat
 import dotenv
 import ../util
@@ -13,24 +14,32 @@ if fileExists(".env"):
   initDotEnv().load()
 
 
-type
-  Channel* = object
-    is_channel*: bool
-    name*: string
-  Message* = object
-    username*: string
-    ts*: string  # Want to use DateTime
-    text*: string
-    permalink*: string
-    channel*: Channel
-  Result* = object
-    total*: int
-    matches*: seq[Message]
-  SearchResult* = object
-    ok*: bool
-    query*: string
-    messages*: Result
-    # TODO: error: Option[str]
+type Channel* = object
+  is_channel*: bool
+  name*: string
+
+type Message* = object
+  username*: string
+  text*: string
+  permalink*: string
+  channel*: Channel
+  ts: string
+
+proc unixTime*(m: Message): int {.inline.} = m.ts.parseFloat.int
+proc dateTime*(m: Message): DateTime {.inline.} = m.unixTime.fromUnix.inZone(local())
+
+
+type Result* = object
+  total*: int
+  matches*: seq[Message]
+
+type SearchResult* = object
+  ok*: bool
+  query*: string
+  messages*: Result
+  # TODO: error: Option[str]
+
+
 
 proc assertToken(): void = 
   if not existsEnv("SLACK_TOKEN"):

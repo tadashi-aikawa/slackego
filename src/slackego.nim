@@ -17,7 +17,7 @@ proc log(message: string) = echo fmt"[{now().format(dateFormat)}] {message}"
 
 
 proc exclude(m: Message, usernames: seq[string], channels: seq[string], minutes: int): bool =
-  let behindSec: int64 = now().toTime.toUnix - m.ts.parseFloat.toInt
+  let behindSec: int64 = now().toTime.toUnix - m.unixTime
   result = anyIt([
     m.username in usernames,
     m.channel.name in channels,
@@ -27,16 +27,16 @@ proc exclude(m: Message, usernames: seq[string], channels: seq[string], minutes:
 
 
 proc searchMessages(word: string, messageTemplate: string, minutes: int, exclude: Exclude): seq[string] =
-  search(word, now() - initInterval(days=1, minutes=minutes))
+  search(word, now() - 1.days - minutes.minutes)
     .messages.matches
-    .sortedByIt(it.ts)
+    .sortedByIt(it.unixTime)
     .filterIt(not exclude(it, exclude.usernames, exclude.channels, minutes))
     .mapIt(messageTemplate.format(
       it.username,
       it.text.replace("@").replace("<!", "<"),  # No mentions
       it.channel.name,
       it.permalink,
-      it.ts.parseFloat.int.fromUnix.inZone(local()).format(dateFormat),
+      it.dateTime.format(dateFormat),
       word
     ))
 
