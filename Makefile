@@ -28,7 +28,7 @@ package: clean-package
 
 release: package
 	@echo '1. Staging and commit'
-	git add slackego.nimble
+	git add slackego.nimble install.sh src/slackegopkg/args.nim
 	git commit -m ':package: Version $(version)'
 
 	@echo '2. Tags'
