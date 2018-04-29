@@ -30,8 +30,9 @@ $ slackego init
 
 ### Set `SLACK_TOKEN`
 
-Either `set a environmental variable` or `create .env`
+Either `set a environmental variable` or `create .env`.
 
+You can get legacy tokens at https://api.slack.com/custom-integrations/legacy-tokens.
 
 ### Check usage
 
