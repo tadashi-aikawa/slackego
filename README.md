@@ -28,14 +28,16 @@ $ slackego init
 ```
 
 
-### Set `SLACK_TOKEN`
+### Set `SLACK_USER_TOKEN` and `SLACK_BOT_TOKEN`
 
 Either `set a environmental variable` or `create .env`.
 
 You should create a User OAuth Token with the below scopes.
 
-- `chat:write`
-- `search:read`
+- `SLACK_USER_TOKEN`
+  - `search:read`
+- `SLACK_BOT_TOKEN`
+  - `chat:write`
 
 ### Check usage
 

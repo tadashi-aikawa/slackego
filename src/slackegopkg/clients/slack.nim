@@ -41,15 +41,17 @@ type SearchResult* = object
 
 
 proc assertToken(): void = 
-  if not existsEnv("SLACK_TOKEN"):
-    error("Please set a environmental variable `SLACK_TOKEN` or create .env.")
+  if not existsEnv("SLACK_USER_TOKEN"):
+    error("Please set a environmental variable `SLACK_USER_TOKEN` or create .env.")
+  if not existsEnv("SLACK_BOT_TOKEN"):
+    error("Please set a environmental variable `SLACK_BOT_TOKEN` or create .env.")
 
 
 proc search*(word: string, after: DateTime): SearchResult = 
   assertToken()
 
   let
-    token = getEnv("SLACK_TOKEN")
+    token = getEnv("SLACK_USER_TOKEN")
     afterDate = after.format("yyyy-MM-dd")
     query = encodeUrl(fmt"{word} after:{afterDate}")
 
@@ -84,7 +86,7 @@ proc postMessage*(message: string, channel: string, username: string, iconEmoji:
   let
     client = newHttpClient()
     url = fmt"https://slack.com/api/chat.postMessage"
-    token = getEnv("SLACK_TOKEN")
+    token = getEnv("SLACK_BOT_TOKEN")
     response: Response = client.request(url, httpMethod = HttpPost, body = $payloadJson, headers=newHttpHeaders({
       "Content-Type": "application/json; charset=UTF-8",
       "Authorization": fmt"Bearer {token}"
