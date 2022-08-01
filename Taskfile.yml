@@ -32,7 +32,7 @@ tasks:
         sed -i -r 's/const VERSION = \".+\"/const VERSION = \"{{.VERSION}}\"/g' src/slackegopkg/args.nim
       - git add slackego.nimble install.sh src/slackegopkg/args.nim
       - git commit -m "📦Version {{.VERSION}}"
-      - git tag v${{.VERSION}} -m v${{.VERSION}}
+      - git tag v{{.VERSION}} -m v{{.VERSION}}
       - git push --tags
       - git push
     preconditions:
