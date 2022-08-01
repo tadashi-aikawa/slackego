@@ -1,0 +1,54 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jiro4989/setup-nim-action@v1
+        with:
+          nim-version: "1.6.0" # default is 'stable'
+      - uses: arduino/setup-task@v1
+
+      - run: nimble build -Y
+      - run: task package
+
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          draft: true
+          files: |
+            src/slackego
+
+      - name: "Discord notification (not success)"
+        uses: rjstone/discord-webhook-notify@v1
+        if: "! success()"
+        with:
+          description: "⚠ Slackego Release failed!"
+          details: "${{ github.ref }}"
+          severity: error
+          avatarUrl: https://assets.wprock.fr/emoji/joypixels/512/1f680.png
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+
+  notify:
+    needs: release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Discord notification (success)"
+        uses: rjstone/discord-webhook-notify@v1
+        if: always()
+        with:
+          description: "🚀 Slackego Release finished!"
+          details: "${{ github.ref }}"
+          severity: info
+          avatarUrl: https://assets.wprock.fr/emoji/joypixels/512/1f680.png
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
