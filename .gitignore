@@ -3,3 +3,4 @@ nimcache/
 /slackego
 /config.json
 slackego.exe
+cacert.pem

@@ -53,8 +53,14 @@ proc search*(word: string, after: DateTime): SearchResult =
     afterDate = after.format("yyyy-MM-dd")
     query = encodeUrl(fmt"{word} after:{afterDate}")
 
-  let url = fmt"https://slack.com/api/search.messages?token={token}&query={query}&sort=timestamp&count=100"
-  let content: string = newHttpClient().getContent(url)
+  let
+    client = newHttpClient()
+    url = fmt"https://slack.com/api/search.messages?query={query}&sort=timestamp&count=100"
+    response: Response = client.request(url, httpMethod = HttpGet, headers=newHttpHeaders({
+      "Authorization": fmt"Bearer {token}"
+    }))
+
+  let content: string = response.body
 
   let json: JsonNode = parseJson(content)
   if not json["ok"].getBool:

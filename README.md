@@ -32,7 +32,10 @@ $ slackego init
 
 Either `set a environmental variable` or `create .env`.
 
-You can get legacy tokens at https://api.slack.com/custom-integrations/legacy-tokens.
+You should create a User OAuth Token with the below scopes.
+
+- `chat:write`
+- `search:read`
 
 ### Check usage
 
