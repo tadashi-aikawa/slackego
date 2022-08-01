@@ -25,11 +25,11 @@ tasks:
           ∟ [Ex] task release VERSION=1.2.3
     cmds:
       - |
-        sed -i -r 's/version       = \".+\"/s/version       = \"{{.VERSION}}"/g' slackego.nimble
+        sed -i -r 's/version       = \".+\"/version       = \"{{.VERSION}}\"/g' slackego.nimble
       - |
         sed -i -r 's/VERSION=v.+/VERSION=v{{.VERSION}}/g' install.sh
       - |
-        sed -i -r 's/const VERSION = ".+"/const VERSION = "{{.VERSION}}"/g' src/slackegopkg/args.nim
+        sed -i -r 's/const VERSION = \".+\"/const VERSION = \"{{.VERSION}}\"/g' src/slackegopkg/args.nim
       - git add slackego.nimble install.sh src/slackegopkg/args.nim
       - git commit -m "📦Version {{.VERSION}}"
       - git push --tags
