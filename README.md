@@ -73,14 +73,18 @@ $ slackego run tadashi-aikawa --minutes 60 --notify times_tadashi-aikawa
 For developers
 --------------
 
+### Requirements
+
+- Task
+
 ### Development
 
-TODO
-
+```console
+task dev -- run want_to_search_message --minutes=60
+```
 
 ### Release
 
-1. Update version in `slackego.nimble`
-2. Update version in `install.sh`
-3. Update version in `src/slackegopkg/args.nim`
-4. `make release`
+```console
+task release VERSION=1.2.3
+```
