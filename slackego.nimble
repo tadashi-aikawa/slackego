@@ -7,7 +7,7 @@ srcDir        = "src"
 bin           = @["slackego"]
 
 # Dependencies
-requires "nim >= 0.18.0"
+requires "nim >= 1.6.0"
 requires "docopt >= 0.6.5"
-requires "dotenv >= 1.1.0"
+requires "dotenv >= 2.0.1"
 

@@ -1,7 +1,5 @@
 import json
 import strformat
-import sequtils
-import strutils
 
 proc param(question: string, default: string): string =
   echo fmt"{question} [{default}]"

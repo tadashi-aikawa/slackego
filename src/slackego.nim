@@ -6,10 +6,10 @@ import strutils
 import sequtils
 import algorithm
 
-import slackegopkg.clients.slack
-import slackegopkg.config
-import slackegopkg.args
-import slackegopkg.init
+import slackegopkg/clients/slack
+import slackegopkg/config
+import slackegopkg/args
+import slackegopkg/init
 
 
 const dateFormat = "yyyy-MM-dd HH:mm:ss"

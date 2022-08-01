@@ -1,5 +1,4 @@
 import os
-import ospaths
 import system
 import uri
 import times
@@ -11,7 +10,7 @@ import dotenv
 import ../util
 
 if fileExists(".env"):
-  initDotEnv().load()
+  load()
 
 
 type Channel* = object

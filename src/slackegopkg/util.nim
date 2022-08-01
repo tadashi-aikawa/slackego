@@ -1,4 +1,3 @@
-import os
 import terminal
 
 proc error*(msg: string, code: int = 1) =
